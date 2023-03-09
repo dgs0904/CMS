@@ -1,0 +1,14 @@
+Columns and The Value They Contain
+A = Loan Id
+C = First Name 
+E = Last Name 
+G = Mobile Number 
+I = Address 
+k = Aadhar Card Number
+N = Pan Card Number 
+P = Bank Name 
+R = Account Number 
+T = Amount
+V = Commision To 
+X = Commision %
+Z = Commision In Rupees
