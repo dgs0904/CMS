@@ -24,8 +24,9 @@ myListOfValues = [ID,fName,lName,numBer,aDD,aaDnumBer,pannumBer,bName,accnumBer]
 
 # Main Fucntions.
 def dataFinder(ID):
-    wb = load_workbook('personDetails.xlsx')
+    wb = load_workbook('./Scripts/personDetails.xlsx')
     ws = wb.active
+    print(ws['A1'].value)
 
 
     # To Find how many rows are there.
@@ -43,7 +44,7 @@ def dataFinder(ID):
         if ID == ws['A' + str(row)].value:
             for col in range(1,10):
                 char = get_column_letter(col)
-                # print(ws[char+str(row)].value)
+                print(ws[char+str(row)].value)
                 myListOfValues[col - 1] =  ws[char+str(row)].value
                 
 
@@ -56,7 +57,7 @@ def dataFinder(ID):
     print(myListOfValues)
 
     print(ws.max_column)
-    wb.save('personDetails.xlsx')
+    wb.save('./Scripts/personDetails.xlsx')
     return myListOfValues
 
 

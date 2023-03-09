@@ -2,7 +2,7 @@ from tkinter import *
 
 import sys
 import os
-sys.path.append(os.path.abspath("./XL editor"))
+sys.path.append(os.path.abspath("./Scripts/XL editor"))
 import caller
 
 window = Tk()

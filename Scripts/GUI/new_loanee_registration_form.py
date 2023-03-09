@@ -1,7 +1,7 @@
 from tkinter import *
 import sys
 import os
-sys.path.append(os.path.abspath("./XL editor"))
+sys.path.append(os.path.abspath("C:/Users/golu6/Downloads/CMS/Scripts/XL editor"))
 from idGenerator import *
 from loanIdGenerator import *
 from loanee_dataFinder import *

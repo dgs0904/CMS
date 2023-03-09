@@ -27,7 +27,7 @@ date_of_emi = None
 
 # Main Fucntions.
 def detailWriter(lID,amount_taken,interestPerc,timePeriod,payDay,startDay,endDay,emiAmount,totalAmount,commTo,comPer,comRup,totalEmi):
-    wb = load_workbook('loanDetails.xlsx')
+    wb = load_workbook('./Scripts/loanDetails.xlsx')
     ws = wb.active
     # To write new record about a loan
     ws.append([lID,amount_taken,interestPerc,timePeriod,payDay,startDay,endDay,emiAmount,totalAmount,commTo,comPer,comRup,totalEmi])
@@ -62,7 +62,7 @@ def detailWriter(lID,amount_taken,interestPerc,timePeriod,payDay,startDay,endDay
             
 
 
-    wb.save('loanDetails.xlsx')
+    wb.save('./Scripts/loanDetails.xlsx')
 
 
 if __name__ == '__main__':

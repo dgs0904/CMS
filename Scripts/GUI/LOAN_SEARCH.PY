@@ -47,32 +47,44 @@ def search():
         myListOfValues[i] = myListOfData[i]
 
 
-    ID_label = Label(centerFrame, text="ID",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=3, column=1, padx=100, pady =5)
+    ID_label = Label(centerFrame, text="LID",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=3, column=1, padx=100, pady =5)
     ID_label = Label(centerFrame, text=myListOfValues[0],font="ariel 10 ",bg= "white", justify= LEFT).grid(row=3, column=2, padx=100, pady =5)
 
-    Name_label = Label(centerFrame, text="Name",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=4, column=1, padx=100, pady =5)
+    Name_label = Label(centerFrame, text="Amount Taken",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=4, column=1, padx=100, pady =5)
     Name_label = Label(centerFrame, text=myListOfValues[1],font="ariel 10 ",bg= "white", justify= LEFT).grid(row=4, column=2, padx=100, pady =5)
     
-    Email_label = Label(centerFrame, text="Email",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=5, column=1, padx=100, pady =5)
+    Email_label = Label(centerFrame, text="Interest",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=5, column=1, padx=100, pady =5)
     Email_label = Label(centerFrame, text=myListOfValues[2],font="ariel 10 ",bg= "white", justify= LEFT).grid(row=5, column=2, padx=100, pady =5)
 
-    Number_label = Label(centerFrame, text="Mobile Number",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=6, column=1, padx=100, pady =5)
+    Number_label = Label(centerFrame, text="Time Period",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=6, column=1, padx=100, pady =5)
     Number_label = Label(centerFrame, text=myListOfValues[3],font="ariel 10 ",bg= "white", justify= LEFT).grid(row=6, column=2, padx=100, pady =5)
 
-    Address_label = Label(centerFrame, text="Address",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=7, column=1, padx=100, pady =5)
+    Address_label = Label(centerFrame, text="Pay Date",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=7, column=1, padx=100, pady =5)
     Address_label = Label(centerFrame, text=myListOfValues[4],font="ariel 10 ",bg= "white", justify= LEFT).grid(row=7, column=2, padx=100, pady =5)
 
-    AadhaarCard_label = Label(centerFrame, text="Aadhaar Card Number",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=8, column=1, padx=100, pady =5)
+    AadhaarCard_label = Label(centerFrame, text="Starting Date",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=8, column=1, padx=100, pady =5)
     AadhaarCard_label = Label(centerFrame, text=myListOfValues[5],font="ariel 10 ",bg= "white", justify= LEFT).grid(row=8, column=2, padx=100, pady =5)
 
-    PanCard_label = Label(centerFrame, text="Pancard Number",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=9, column=1, padx=100, pady =5)
+    PanCard_label = Label(centerFrame, text="Closing Date",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=9, column=1, padx=100, pady =5)
     PanCard_label = Label(centerFrame, text=myListOfValues[6],font="ariel 10 ",bg= "white", justify= LEFT).grid(row=9, column=2, padx=100, pady =5)
 
-    BankName_label = Label(centerFrame, "Bank Name",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=10, column=1, padx=100, pady =5)
+    BankName_label = Label(centerFrame,text=  "EMI",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=10, column=1, padx=100, pady =5)
     BankName_label = Label(centerFrame, text=myListOfValues[7],font="ariel 10 ",bg= "white", justify= LEFT).grid(row=10, column=2, padx=100, pady =5)
 
-    AccountNumber_label = Label(centerFrame, text="Account Number",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=11, column=1, padx=100, pady =5)
+    AccountNumber_label = Label(centerFrame, text="Total Amount",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=11, column=1, padx=100, pady =5)
     AccountNumber_label = Label(centerFrame, text=myListOfValues[8],font="ariel 10 ",bg= "white", justify= LEFT).grid(row=11, column=2, padx=100, pady =5)
+
+    ComTo_label = Label(centerFrame, text="Commision To",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=12, column=1, padx=100, pady =5)
+    ComTo_label = Label(centerFrame, text=myListOfValues[8],font="ariel 10 ",bg= "white", justify= LEFT).grid(row=12, column=2, padx=100, pady =5)
+    
+    ComPer_label = Label(centerFrame, text="Commision Per",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=13, column=1, padx=100, pady =5)
+    ComPer_label = Label(centerFrame, text=myListOfValues[8],font="ariel 10 ",bg= "white", justify= LEFT).grid(row=13, column=2, padx=100, pady =5)
+
+    ComRup_label = Label(centerFrame, text="Commision in Rupee",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=14, column=1, padx=100, pady =5)
+    ComRup_label = Label(centerFrame, text=myListOfValues[8],font="ariel 10 ",bg= "white", justify= LEFT).grid(row=14, column=2, padx=100, pady =5)
+    
+    TotalEMi_label = Label(centerFrame, text="Total EMI",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=15, column=1, padx=100, pady =5)
+    TotalEMi_label = Label(centerFrame, text=myListOfValues[8],font="ariel 10 ",bg= "white", justify= LEFT).grid(row=15, column=2, padx=100, pady =5)
     
 
 

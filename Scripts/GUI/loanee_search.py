@@ -1,7 +1,7 @@
 from tkinter import *
 import sys
 import os
-sys.path.append(os.path.abspath("./XL editor"))
+sys.path.append(os.path.abspath("./Scripts/XL editor"))
 from idGenerator import *
 from loanIdGenerator import *
 from loanee_dataFinder import *
@@ -66,7 +66,7 @@ def search():
     PanCard_label = Label(centerFrame, text="Pancard Number",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=9, column=1, padx=100, pady =5)
     PanCard_label = Label(centerFrame, text=myListOfValues[6],font="ariel 10 ",bg= "white", justify= LEFT).grid(row=9, column=2, padx=100, pady =5)
 
-    BankName_label = Label(centerFrame, "Bank Name",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=10, column=1, padx=100, pady =5)
+    BankName_label = Label(centerFrame, text="Bank Name",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=10, column=1, padx=100, pady =5)
     BankName_label = Label(centerFrame, text=myListOfValues[7],font="ariel 10 ",bg= "white", justify= LEFT).grid(row=10, column=2, padx=100, pady =5)
 
     AccountNumber_label = Label(centerFrame, text="Account Number",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=11, column=1, padx=100, pady =5)

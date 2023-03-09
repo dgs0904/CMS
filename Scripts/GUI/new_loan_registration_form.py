@@ -1,5 +1,5 @@
 from tkinter import *
-from datetime import date
+from datetime import date,timedelta
 from dateutil.relativedelta import relativedelta
 from tkcalendar import DateEntry
 import sys
@@ -8,7 +8,7 @@ import os
 
 
 # ALL CUSTOM MADE SCRIPTS ARE IMPORTED BELOW.
-sys.path.append(os.path.abspath("./XL editor"))
+sys.path.append(os.path.abspath("./Scripts/XL editor"))
 from idGenerator import *
 from loanIdGenerator import *
 from loanee_dataFinder import *
@@ -24,7 +24,7 @@ window.title("NEW LOANEE REGISTRATION")
 # VARIABLES TO BE USED IN LOANEE REGISTRATION.
 lID = StringVar()
 amount_taken = IntVar()
-interestPerc = StringVar()
+interestPerc = IntVar()
 timePeriod = IntVar()
 payDay = StringVar()
 startDay = StringVar()
@@ -41,16 +41,20 @@ ID = StringVar()
 # METHOD TO CALL LOANEE_DATAEDITOR.PY AND REGISTER THE USER.
 def register():
     ID = ID_Entry.get()
-    amtTaken = amtTaken_Entry.get()
+    amtTaken = int(amtTaken_Entry.get())
     IntPer = int(IntPer_Entry.get())
-    timePeriod = TimePeriod_Entry.get("1.0","end-1c")
-    PayDate = date(PayDate_Entry.get())
+    timePeriod = int(TimePeriod_Entry.get())
+    PayDate = PayDate_Entry.get_date()
     ComTo = ComTo_Entry.get()
     ComPer = int(ComPer_Entry.get())
 
     # WE WILL GENERATE THE VALUE OF THE REMAINING VARAIBALES DYNAMICALLY.
     startDay = PayDate
-    endDay = startDay + relativedelta(months = timePeriod)
+    endDay = startDay + relativedelta(months=+timePeriod)
+    totalAmount = amtTaken + amtTaken/100 * IntPer
+    emiAmount = totalAmount/timePeriod
+    comRup = totalAmount / 100 * ComPer
+    totalEmi = timePeriod
     # TO GENERATE ID TO BE USED FOR TAKING LOANS.
     # ID = generateId(Name)
     lID = generateLoanId(ID)
@@ -59,7 +63,7 @@ def register():
     # lID = generateLoanId(ID)
 
     # TO REGISTER THE LOANEE FINALLY.
-    detailWriter(lID,amount_taken,interestPerc,timePeriod,payDay,startDay,endDay,emiAmount,totalAmount,commTo,comPer,comRup,totalEmi)
+    detailWriter(lID,amtTaken,IntPer,timePeriod,PayDate,startDay,endDay,emiAmount,totalAmount,ComTo,ComPer,comRup,totalEmi)
 
 
     # A MESSAGE WILL BE SENT TO THE LOANEE FROM HERE THAT HE HAS SUCCESSFULLY REGISTERED WITH US.

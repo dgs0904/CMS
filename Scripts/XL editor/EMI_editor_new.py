@@ -28,7 +28,7 @@ myListOfValues = [lID,fName,lName,numBer,aDD,aaDnumBer,pannumBer,bName,accnumBer
 
 # Main Fucntions.
 def dataFinder(lID):
-    wb = load_workbook('personDetails.xlsx')
+    wb = load_workbook('./Scripts/personDetails.xlsx')
     ws = wb.active
 
 
@@ -53,5 +53,5 @@ def dataFinder(lID):
     # print(myListOfValues)
 
     
-    wb.save('personDetails.xlsx')
+    wb.save('./Scripts/personDetails.xlsx')
     return myListOfValues

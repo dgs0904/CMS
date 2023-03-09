@@ -23,7 +23,7 @@ myListOfValues = [lID,fName,lName,numBer,aDD,aaDnumBer,pannumBer,bName,accnumBer
 
 # Main Fucntions.
 def dataFinder(lID):
-    wb = load_workbook('loanDetails.xlsx')
+    wb = load_workbook('./Scripts/loanDetails.xlsx')
     ws = wb.active
 
 
@@ -34,7 +34,7 @@ def dataFinder(lID):
     # To find data from particular cells.
     for row in range(1,4):
         if lID == ws['A' + str(row)].value:
-            for col in range(1,14):
+            for col in range(1,11):
                 char = get_column_letter(col)
                 # print(ws[char+str(row)].value)
                 myListOfValues[col - 1] =  ws[char+str(row)].value
@@ -49,7 +49,7 @@ def dataFinder(lID):
     # print(myListOfValues)
 
     
-    wb.save('loanDetails.xlsx')
+    wb.save('./Scripts/loanDetails.xlsx')
     return myListOfValues
 
 if __name__ == '__main__':
