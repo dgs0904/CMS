@@ -1,0 +1,18 @@
+We want to create an application for managing money lent by a Person as private loans.
+The client has been doing this for quite a while now and has managed its data in Excel manually.
+The client wants an application that can be used by him to easily manage all the stuff.
+The client's demands are quite simple he wants an application to be used on his laptop(Windows OS) only,
+The client is going to be an only user so we don't need admin/user sign-in or account management.
+
+
+And application to decide what is the amount to be paid to him per month based on information put in as input(amount taken, decided interest, duration of the loan)
+By-default installment date 1st day of every month(This can be flexible based on Your Creativity).
+
+
+Following are the images of the previous same project which was based on PHP and web application.
+The client quite liked the Frontend from there, so I'm a reference for YOu to take from there.
+
+To make something clear in the images forwarded to You, You can see we had separate sections for Loan Type & plans,
+whether it is decided to append those functions in the creation of loans in this application.
+
+So these options should be specified while creating a loan and would be visible in the loan's description only.
