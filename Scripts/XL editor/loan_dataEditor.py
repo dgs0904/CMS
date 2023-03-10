@@ -2,6 +2,19 @@
 from openpyxl import workbook, load_workbook
 from openpyxl.utils import get_column_letter
 
+# Runs from A to ZZ only
+# A = 0, B = 1...
+import math
+def num2col(num):
+    col = ""
+
+    if(num < 26):
+        col += chr(ord('A') + num)
+    else:
+        col += chr(ord('A') + math.floor(num / 26) - 1)
+        col += chr(ord('A') + (num % 26))
+
+    return col
 
 # Declaring Variables.
 # HERE WE WILL NOT NEED OTHER DETAILS LIKE NAME, EMAIL OR ID BECAUSE HERE WE'LL OPERATE ON LOAN ID WHICH CREATED ON THE BASIS OF OUR GENERAL ID.
