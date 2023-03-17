@@ -9,7 +9,7 @@ def email_alert(subject, body, to):
 
     user = "devang.sharma.7054@gmail.com"
     msg['from'] = user
-    password = "xkqnmztkrdyjfwxf"
+    password = "bnmeeodjatsrymvl"
 
     server = smtplib.SMTP("smtp.gmail.com", 587)
     server.starttls()
@@ -19,4 +19,4 @@ def email_alert(subject, body, to):
     server.quit()
 
 if __name__ == '__main__':
-    email_alert("Hey Friend","Hello, Jay", "jenishkkanani93@gmail.com") 
+    email_alert("Hey Friend","Hello, Jay", "ayushthakur667@gmail.com") 

@@ -42,15 +42,15 @@ ID = StringVar()
 def register():
     ID = ID_Entry.get()
     amtTaken = int(amtTaken_Entry.get())
-    IntPer = int(IntPer_Entry.get())
+    IntPer = float(IntPer_Entry.get())
     timePeriod = int(TimePeriod_Entry.get())
     PayDate = PayDate_Entry.get_date()
     ComTo = ComTo_Entry.get()
-    ComPer = int(ComPer_Entry.get())
+    ComPer = float(ComPer_Entry.get())
 
     # WE WILL GENERATE THE VALUE OF THE REMAINING VARAIBALES DYNAMICALLY.
     startDay = PayDate
-    endDay = startDay + relativedelta(months=+timePeriod)
+    endDay = startDay + relativedelta(months=timePeriod)
     totalAmount = amtTaken + amtTaken/100 * IntPer
     emiAmount = totalAmount/timePeriod
     comRup = totalAmount / 100 * ComPer
