@@ -43,7 +43,10 @@ date_of_emi = None
 # Main Fucntions.
 def detailWriter(lID,amount_taken,interestPerc,timePeriod,payDay,startDay,endDay,emiAmount,totalAmount,commTo,comPer,comRup,totalEmi):
     wb = load_workbook('./Scripts/loanDetails.xlsx')
+    print(wb.sheetnames)
     ws = wb["Sheet1"]
+    wa = wb["Sheet2"]
+
     # To write new record about a loan
     ws.append([lID,amount_taken,interestPerc,timePeriod,payDay,startDay,endDay,emiAmount,totalAmount,commTo,comPer,comRup,totalEmi])
     
@@ -63,7 +66,6 @@ def detailWriter(lID,amount_taken,interestPerc,timePeriod,payDay,startDay,endDay
     num = 1
     print(startDay)
     intialDay = startDay
-    wa = wb['Sheet2']
     wa['A' + str(working_row)].value = lID
     for emi in range(0,12):
         col = num2col(num)

@@ -5,7 +5,7 @@ import sys,os
 sys.path.append(os.path.abspath("C:/Users/golu6/Downloads/CMS/Scripts"))
 
 # Declaring Variables.
-lID = None
+ID = None
 Name = None
 email = None
 numBer = None
@@ -15,16 +15,19 @@ pannumBer = None
 bName = None
 accnumBer = None
 
-myListOfValues = [lID,Name,email,numBer,aDD,aaDnumBer,pannumBer,bName,accnumBer]
+myListOfValues = [ID,Name,email,numBer,aDD,aaDnumBer,pannumBer,bName,accnumBer]
 
 
 # Main Fucntions.
-def detailWriter(lID,Name,email,numBer,aDD,aaDnumBer,pannumBer,bName,accnumBer):
+def detailWriter(ID,Name,email,numBer,aDD,aaDnumBer,pannumBer,bName,accnumBer):
     wb = load_workbook('./Scripts/personDetails.xlsx')
     ws = wb.active
     # To write new record about a loanee
-    ws.append([lID,Name,email,numBer,aDD,aaDnumBer,pannumBer,bName,accnumBer])
+    ws.append([ID,Name,email,numBer,aDD,aaDnumBer,pannumBer,bName,accnumBer])
 
     wb.save('./Scripts/personDetails.xlsx')
 
     print("wrote to workbook")
+
+if __name__ == '__main__':
+    detailWriter("20230225RA","Devang Sharma","devang.sharma.7054@gmail.com",8866432894,"Ahmedabad, Sabaramati",12331223123,435554313354,"Apna Bank",124345513)
