@@ -68,6 +68,7 @@ def detailWriter(lID,amount_taken,interestPerc,timePeriod,payDay,startDay,endDay
     for emi in range(0,12):
         col = num2col(num)
         nextDay = intialDay + relativedelta(months = emi)
+        # nextDay = startDay + relativedelta(months = emi)
         wa[col + str(working_row)].value = nextDay
         num += 1
 

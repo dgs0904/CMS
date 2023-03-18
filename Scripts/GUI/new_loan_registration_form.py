@@ -2,6 +2,7 @@ from tkinter import *
 from datetime import date,timedelta
 from dateutil.relativedelta import relativedelta
 from tkcalendar import DateEntry
+from openpyxl import workbook, load_workbook
 import sys
 import os
 
@@ -50,6 +51,7 @@ def register():
 
     # WE WILL GENERATE THE VALUE OF THE REMAINING VARAIBALES DYNAMICALLY.
     startDay = PayDate
+    print(type(startDay))
     endDay = startDay + relativedelta(months=timePeriod)
     totalAmount = amtTaken + amtTaken/100 * IntPer
     emiAmount = totalAmount/timePeriod
@@ -65,13 +67,19 @@ def register():
     # TO REGISTER THE LOANEE FINALLY.
     detailWriter(lID,amtTaken,IntPer,timePeriod,PayDate,startDay,endDay,emiAmount,totalAmount,ComTo,ComPer,comRup,totalEmi)
 
-
+    wb = load_workbook('./Scripts/personDetails.xlsx')
+    ws = wb['sheet1']
+    for row in range(2,ws.max_row+1):
+        # TO FIND THE ROW NUMBER OF LOAN DETAILS
+        if lID == ws['A' + str(row)].value:
+            working_row = row
+    w_email = ws['C' + working_row]
     # A MESSAGE WILL BE SENT TO THE LOANEE FROM HERE THAT HE HAS SUCCESSFULLY REGISTERED WITH US.
     email_alert("Registeration Successfull",f'''
     Dear Loanee,
     Thanks for Choosing us.
     Here is Your {ID} which You can use to take loans.
-    ''', email)
+    ''', w_email)
 
 
 

@@ -77,9 +77,9 @@ def emiFinder():
                 col2 = num2col(num-13)
                 # print(col2)
                 if datetime.strptime(str(wa[col2 + str(working_row)].value).split(" ")[0], '%Y-%m-%d') < today:
-                    # print(str(wa[col2 + str(working_row)].value).split(" ")[0])
-                    # print(f'Loan Id : {lID.value} Emi No. : {emiCount}')
-                    pass
+                    print(str(wa[col2 + str(working_row)].value).split(" ")[0])
+                    print(f'Loan Id : {lID.value} Emi No. : {emiCount}')
+                    # pass
             else:
                 print("Something's FishyS")
             num += 1

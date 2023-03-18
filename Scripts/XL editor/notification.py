@@ -15,7 +15,7 @@ import webbrowser
 from win10toast_click import ToastNotifier 
 
 # function 
-page_url = 'http://google.com/'
+page_url = 'http://youtube.com/'
 
 def open_url():
     try: 
