@@ -30,4 +30,4 @@ def detailWriter(ID,Name,email,numBer,aDD,aaDnumBer,pannumBer,bName,accnumBer):
     print("wrote to workbook")
 
 if __name__ == '__main__':
-    detailWriter("20230225RA","Devang Sharma","devang.sharma.7054@gmail.com",8866432894,"Ahmedabad, Sabaramati",12331223123,435554313354,"Apna Bank",124345513)
+    detailWriter("20230225DE","Devang Sharma","devang.sharma.7054@gmail.com",8866432894,"Ahmedabad, Sabaramati",123312223,4355543354,"Apna Bank",124345513)

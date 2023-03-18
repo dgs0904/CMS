@@ -43,7 +43,7 @@ date_of_emi = None
 # Main Fucntions.
 def detailWriter(lID,amount_taken,interestPerc,timePeriod,payDay,startDay,endDay,emiAmount,totalAmount,commTo,comPer,comRup,totalEmi):
     wb = load_workbook('./Scripts/loanDetails.xlsx')
-    print(wb.sheetnames)
+    # print(wb.sheetnames)
     ws = wb["Sheet1"]
     wa = wb["Sheet2"]
 
@@ -64,12 +64,13 @@ def detailWriter(lID,amount_taken,interestPerc,timePeriod,payDay,startDay,endDay
         num += 1
 
     num = 1
-    print(startDay)
-    intialDay = startDay
+    # print(type(startDay))
+    initialDay = datetime.strptime(startDay,"%Y-%m-%d")
     wa['A' + str(working_row)].value = lID
     for emi in range(0,12):
         col = num2col(num)
-        nextDay = intialDay + relativedelta(months = emi)
+        # print(type(initialDay))
+        nextDay = initialDay + relativedelta(months = emi)
         # nextDay = startDay + relativedelta(months = emi)
         wa[col + str(working_row)].value = nextDay
         num += 1
@@ -81,4 +82,4 @@ def detailWriter(lID,amount_taken,interestPerc,timePeriod,payDay,startDay,endDay
 
 
 if __name__ == '__main__':
-    detailWriter("20230225RA2502",5000,0.05,12,"2023-03-09","2023-03-09","2024-03-09",437.5,5250,"Rahul","0.03",1.575,12)
+    detailWriter("20230225RA2502",5000,0.05,12,"2023-03-09","2024-03-09","2024-03-09",437.5,5250,"Rahul","0.03",1.575,12)
