@@ -62,7 +62,7 @@ def detailWriter(lID,amount_taken,interestPerc,timePeriod,payDay,startDay,endDay
 
     num = 1
     print(startDay)
-    intialDay = datetime.strptime(str(startDay), '%Y-%m-%d').date()
+    intialDay = startDay
     wa = wb['Sheet2']
     wa['A' + str(working_row)].value = lID
     for emi in range(0,12):
