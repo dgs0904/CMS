@@ -78,7 +78,7 @@ def register():
     email_alert("Registeration Successfull",f'''
     Dear Loanee,
     Thanks for Choosing us.
-    Here is Your {ID} which You can use to take loans.
+    Here is Your {lID}, Your loan was successfully issued.
     ''', w_email)
 
 

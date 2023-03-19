@@ -9,7 +9,7 @@ def generateLoanId(id):
     # Converting Date into String to Generate User Id
     dt = dt.replace('-','')
 
-    # print(id + dt)
+    print(id + dt)
     return str(id) + dt
 
 if __name__ == '__main__':

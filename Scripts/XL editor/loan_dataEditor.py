@@ -65,14 +65,18 @@ def detailWriter(lID,amount_taken,interestPerc,timePeriod,payDay,startDay,endDay
 
     num = 1
     # print(type(startDay))
+    startDay = str(startDay)
     initialDay = datetime.strptime(startDay,"%Y-%m-%d")
+    nextDay = initialDay
     wa['A' + str(working_row)].value = lID
-    for emi in range(0,12):
+    for emi in range(1,int(ws['M' + str(working_row)].value) + 1):
         col = num2col(num)
         # print(type(initialDay))
-        nextDay = initialDay + relativedelta(months = emi)
-        # nextDay = startDay + relativedelta(months = emi)
+        
+        nextDay = datetime.strftime(nextDay,"%Y-%m-%d")
         wa[col + str(working_row)].value = nextDay
+        nextDay = initialDay + relativedelta(months = emi)
+        print (nextDay)
         num += 1
 
             

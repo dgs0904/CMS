@@ -18,16 +18,17 @@ accnumBer = None
 myListOfValues = [ID,Name,email,numBer,aDD,aaDnumBer,pannumBer,bName,accnumBer]
 
 
+
 # Main Fucntions.
 def detailWriter(ID,Name,email,numBer,aDD,aaDnumBer,pannumBer,bName,accnumBer):
     wb = load_workbook('./Scripts/personDetails.xlsx')
-    ws = wb.active
+    ws = wb.active # ['sheet1']
     # To write new record about a loanee
     ws.append([ID,Name,email,numBer,aDD,aaDnumBer,pannumBer,bName,accnumBer])
 
     wb.save('./Scripts/personDetails.xlsx')
 
-    print("wrote to workbook")
+    # print("wrote to workbook")
 
 if __name__ == '__main__':
     detailWriter("20230225DE","Devang Sharma","devang.sharma.7054@gmail.com",8866432894,"Ahmedabad, Sabaramati",123312223,4355543354,"Apna Bank",124345513)
