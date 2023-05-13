@@ -17,165 +17,232 @@ from loanee_dataEditor import *
 from loan_dataEditor import *
 from email_alert import *
 
-window = Tk()
-window.geometry("960x550")
-window.configure(bg="white")
-window.title("NEW LOANEE REGISTRATION")
 
-# VARIABLES TO BE USED IN LOANEE REGISTRATION.
-lID = StringVar()
-amount_taken = IntVar()
-interestPerc = IntVar()
-timePeriod = IntVar()
-payDay = StringVar()
-startDay = StringVar()
-endDay = StringVar()
-emiAmount = IntVar()
-totalAmount = StringVar()
-commTo = StringVar()
-comPer = StringVar()
-comRup = StringVar()
-totalEmi= timePeriod
+def main():
+    window = Tk()
+    window.geometry("960x550")
+    window.configure(bg="white")
+    window.title("NEW LOANEE REGISTRATION")
 
-ID = StringVar()
+    def loanSearchFrame(selectionWindow):
+        window.destroy()
+        selectionWindow.destroy()
+        import loan_search
+        loan_search.main()
 
-# METHOD TO CALL LOANEE_DATAEDITOR.PY AND REGISTER THE USER.
-def register():
-    ID = ID_Entry.get()
-    amtTaken = int(amtTaken_Entry.get())
-    IntPer = float(IntPer_Entry.get())
-    timePeriod = int(TimePeriod_Entry.get())
-    PayDate = PayDate_Entry.get_date()
-    ComTo = ComTo_Entry.get()
-    ComPer = float(ComPer_Entry.get())
+    def loanCreationFrame(selectionWindow):
+        window.destroy()
+        selectionWindow.destroy()
+        import new_loan_registration_form
+        new_loan_registration_form.main()
 
-    # WE WILL GENERATE THE VALUE OF THE REMAINING VARAIBALES DYNAMICALLY.
-    startDay = PayDate
-    print(type(startDay))
-    endDay = startDay + relativedelta(months=timePeriod)
-    totalAmount = amtTaken + amtTaken/100 * IntPer
-    emiAmount = totalAmount/timePeriod
-    comRup = totalAmount / 100 * ComPer
-    totalEmi = timePeriod
-    # TO GENERATE ID TO BE USED FOR TAKING LOANS.
-    # ID = generateId(Name)
-    lID = generateLoanId(ID)
+    def loaneeSearchFrame(selectionWindow):
+        window.destroy()
+        selectionWindow.destroy()
+        import loanee_search
+        loanee_search.main()
 
-    # MAIN ID WILL BE USED TO REGISTER THE LOANEE AND TO CREATE THE IDs FOR THE LOANS THAT HE TAKES.
-    # lID = generateLoanId(ID)
+    def loaneeCreationFrame(selectionWindow):
+        window.destroy()
+        selectionWindow.destroy()
+        import new_loanee_registration_form
+        new_loanee_registration_form.main()
 
-    # TO REGISTER THE LOANEE FINALLY.
-    detailWriter(lID,amtTaken,IntPer,timePeriod,PayDate,startDay,endDay,emiAmount,totalAmount,ComTo,ComPer,comRup,totalEmi)
+    def borrowerSelectionFrame():
+        selectionWindow = Tk()
+        selectionWindow.geometry("300x200+100+200")
+        selectionWindow.title("Select an option")
+        selectionWindow.rowconfigure(0, weight=1)
+        selectionWindow.columnconfigure(0, weight=1)
+        selectionWindow.columnconfigure(1, weight=1)
 
-    wb = load_workbook('./Scripts/personDetails.xlsx')
-    ws = wb['sheet1']
-    for row in range(2,ws.max_row+1):
-        # TO FIND THE ROW NUMBER OF LOAN DETAILS
-        if lID == ws['A' + str(row)].value:
-            working_row = row
-    w_email = ws['C' + working_row]
-    # A MESSAGE WILL BE SENT TO THE LOANEE FROM HERE THAT HE HAS SUCCESSFULLY REGISTERED WITH US.
-    email_alert("Registeration Successfull",f'''
-    Dear Loanee,
-    Thanks for Choosing us.
-    Here is Your {lID}, Your loan was successfully issued.
-    ''', w_email)
+        btn_searchLoan = Button(selectionWindow, text="Search for Borrowers", command=lambda: loaneeSearchFrame(selectionWindow))
+        btn_searchLoan.grid(row=0,column=0, sticky="NEWS", padx=10, pady=10)
+        btn_createLoan = Button(selectionWindow, text="Create a Borrower", command=lambda : loaneeCreationFrame(selectionWindow))
+        btn_createLoan.grid(row=0,column=1, sticky="NEWS", padx=10, pady=10)
+        
+        selectionWindow.mainloop()
 
+    def loanSelectionFrame():
+        selectionWindow = Tk()
+        selectionWindow.geometry("300x200+100+200")
+        selectionWindow.title("Select an option")
+        selectionWindow.rowconfigure(0, weight=1)
+        selectionWindow.columnconfigure(0, weight=1)
+        selectionWindow.columnconfigure(1, weight=1)
 
+        btn_searchLoan = Button(selectionWindow, text="Search for Loans", command=lambda: loanSearchFrame(selectionWindow))
+        btn_searchLoan.grid(row=0,column=0, sticky="NEWS", padx=10, pady=10)
+        btn_createLoan = Button(selectionWindow, text="Create a Loan", command=lambda : loanCreationFrame(selectionWindow))
+        btn_createLoan.grid(row=0,column=1, sticky="NEWS", padx=10, pady=10)
+        
+        selectionWindow.mainloop()
 
+    def paymentFrame():
+        window.destroy()
+        import Payments_Page
+        Payments_Page.main()
 
-# -------------------------------GUI Logic.-------------------------------
-outlinerFrame = Frame(window, bg="#535c5c", borderwidth=1,relief=SUNKEN)
-outlinerFrame.pack(side=LEFT, fill="y")
+    def homeFrame():
+        window.destroy()
+        import home_gui
+        home_gui.main()
 
-LEFTFrame = Frame(window, bg="white", border=4)
-LEFTFrame.pack(side=LEFT, fill="x")
+    # VARIABLES TO BE USED IN LOANEE REGISTRATION.
+    lID = StringVar()
+    amount_taken = IntVar()
+    interestPerc = IntVar()
+    timePeriod = IntVar()
+    payDay = StringVar()
+    startDay = StringVar()
+    endDay = StringVar()
+    emiAmount = IntVar()
+    totalAmount = StringVar()
+    commTo = StringVar()
+    comPer = StringVar()
+    comRup = StringVar()
+    totalEmi= timePeriod
 
-terminalFrame = Frame(window, bg="white", border=4,)
-terminalFrame.pack(side=BOTTOM, fill= "x")
+    ID = StringVar()
 
-centerFrame = Frame(window, bg="white", border=4,)
-centerFrame.pack(fill= "both")
+    # METHOD TO CALL LOANEE_DATAEDITOR.PY AND REGISTER THE USER.
+    def register():
+        ID = ID_Entry.get()
+        amtTaken = int(amtTaken_Entry.get())
+        IntPer = float(IntPer_Entry.get())
+        timePeriod = int(TimePeriod_Entry.get())
+        PayDate = PayDate_Entry.get_date()
+        ComTo = ComTo_Entry.get()
+        ComPer = float(ComPer_Entry.get())
 
-# To display text in outliner.
-# outlinerTexr = Label(outlinerFrame, text="Outliner...")
-home_button = Button(outlinerFrame, background="black",fg="white",width=20, text="Home")
-home_button.pack(pady=10, padx=50)
+        # WE WILL GENERATE THE VALUE OF THE REMAINING VARAIBALES DYNAMICALLY.
+        startDay = PayDate
+        print(type(startDay))
+        endDay = startDay + relativedelta(months=timePeriod)
+        totalAmount = amtTaken + amtTaken/100 * IntPer
+        emiAmount = totalAmount/timePeriod
+        comRup = totalAmount / 100 * ComPer
+        totalEmi = timePeriod
+        # TO GENERATE ID TO BE USED FOR TAKING LOANS.
+        # ID = generateId(Name)
+        lID = generateLoanId(ID)
 
-borrowers_button = Button(outlinerFrame, background="black",fg="white",width=20, text="Borrowers")
-borrowers_button.pack(pady=10,padx=50)
+        # MAIN ID WILL BE USED TO REGISTER THE LOANEE AND TO CREATE THE IDs FOR THE LOANS THAT HE TAKES.
+        # lID = generateLoanId(ID)
 
-loans_button = Button(outlinerFrame, background="black",fg="white",width=20, text="Loans")
-loans_button.pack(pady=10,  padx=50)
+        # TO REGISTER THE LOANEE FINALLY.
+        detailWriter(lID,amtTaken,IntPer,timePeriod,PayDate,startDay,endDay,emiAmount,totalAmount,ComTo,ComPer,comRup,totalEmi)
 
-payments_button = Button(outlinerFrame, background="black",fg="white",width=20, text="Payments")
-payments_button.pack(pady=10,  padx=50)
-
-
-# To show display widgets in LEFT window.
-# fileHeading = Label(LEFTFrame, text="File.txt")
-fileHeading = Label(LEFTFrame,bg = "white")
-fileHeading.pack()
-
-
-# To display widgets in bottom frame.
-# terminalText = Label(terminalFrame, text="This is Your output window.")
-terminalText = Label(terminalFrame, bg="white")
-terminalText.pack(pady=50)
-
-
-
-# TO DISPLAY WIDGETS IN CENTER CENTERFRAME.
-
-# LABELS IN CENTERFRAME.
-
-
-# ---------------------WE ARE NOT GOING TO PUT THIS AS WE WILL OURSELF CREATE THE LOAN ID AND DISPLAY IT TO THE USER.---------------------
-# loanId_label = Label(centerFrame, text="Loan Id",font="ariel 10 ", bg= "white", justify= LEFT).grid(row=1, column=1, padx=100, pady =5)
-
-Id_label = Label(centerFrame, text="ID Number",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=2, column=1, padx=100, pady =5)
-
-amtTaken_label = Label(centerFrame, text="Amount Taken",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=3, column=1, padx=100, pady =5)
-
-IntPer_label = Label(centerFrame, text="Interest Percentage",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=4, column=1, padx=100, pady =5)
-
-TimePeriod_label = Label(centerFrame, text="Time Period",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=5, column=1, padx=100, pady =5)
-
-PayDate_label = Label(centerFrame, text="Pay Date",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=6, column=1, padx=100, pady =5)
-
-ComTo_label = Label(centerFrame, text="Commision To",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=7, column=1, padx=100, pady =5)
-
-ComPer_label = Label(centerFrame, text="Commision Percentage",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=8, column=1, padx=100, pady =5)
-
-# AccountNumber_label = Label(centerFrame, text="Account Number",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=9, column=1, padx=100, pady =5)
+        wb = load_workbook('./Scripts/personDetails.xlsx')
+        ws = wb['sheet1']
+        for row in range(2,ws.max_row+1):
+            # TO FIND THE ROW NUMBER OF LOAN DETAILS
+            if lID == ws['A' + str(row)].value:
+                working_row = row
+        w_email = ws['C' + working_row]
+        # A MESSAGE WILL BE SENT TO THE LOANEE FROM HERE THAT HE HAS SUCCESSFULLY REGISTERED WITH US.
+        email_alert("Registeration Successfull",f'''
+        Dear Loanee,
+        Thanks for Choosing us.
+        Here is Your {lID}, Your loan was successfully issued.
+        ''', w_email)
 
 
 
 
+    # -------------------------------GUI Logic.-------------------------------
+    outlinerFrame = Frame(window, bg="#535c5c", borderwidth=1,relief=SUNKEN)
+    outlinerFrame.pack(side=LEFT, fill="y")
+
+    LEFTFrame = Frame(window, bg="white", border=4)
+    LEFTFrame.pack(side=LEFT, fill="x")
+
+    terminalFrame = Frame(window, bg="white", border=4,)
+    terminalFrame.pack(side=BOTTOM, fill= "x")
+
+    centerFrame = Frame(window, bg="white", border=4,)
+    centerFrame.pack(fill= "both")
+
+    # To display text in outliner.
+    # outlinerTexr = Label(outlinerFrame, text="Outliner...")
+    home_button = Button(outlinerFrame, background="black",fg="white",width=20, text="Home", command=homeFrame)
+    home_button.pack(pady=10, padx=50)
+
+    borrowers_button = Button(outlinerFrame, background="black",fg="white",width=20, text="Borrowers", command=borrowerSelectionFrame)
+    borrowers_button.pack(pady=10,padx=50)
+
+    loans_button = Button(outlinerFrame, background="black",fg="white",width=20, text="Loans", command=loanSelectionFrame)
+    loans_button.pack(pady=10,  padx=50)
+
+    payments_button = Button(outlinerFrame, background="black",fg="white",width=20, text="Payments", command=paymentFrame)
+    payments_button.pack(pady=10,  padx=50)
+
+
+    # To show display widgets in LEFT window.
+    # fileHeading = Label(LEFTFrame, text="File.txt")
+    fileHeading = Label(LEFTFrame,bg = "white")
+    fileHeading.pack()
+
+
+    # To display widgets in bottom frame.
+    # terminalText = Label(terminalFrame, text="This is Your output window.")
+    terminalText = Label(terminalFrame, bg="white")
+    terminalText.pack(pady=50)
 
 
 
-# TEXT ENTRY WIDGETS IN CENTERFRAME.
-# loanId_Entry = Entry(centerFrame, textvariable=lID).grid(row=1,column=2)
-ID_Entry = Entry(centerFrame, textvariable=Name)
-ID_Entry.grid(row=2,column=2)
-amtTaken_Entry = Entry(centerFrame, textvariable=email)
-amtTaken_Entry.grid(row=3,column=2)
-IntPer_Entry = Entry(centerFrame, textvariable=numBer)
-IntPer_Entry.grid(row=4,column=2)
-# aDD_Entry = Entry(centerFrame, textvariable=aDD).grid(row=5,column=2)
-TimePeriod_Entry = Entry(centerFrame,textvariable= timePeriod)
-TimePeriod_Entry.grid(row=5,column=2)
-PayDate_Entry = DateEntry(centerFrame, textvariable=aaDnumBer)
-PayDate_Entry.grid(row=6,column=2)
-ComTo_Entry = Entry(centerFrame, textvariable=pannumBer)
-ComTo_Entry.grid(row=7,column=2)
-ComPer_Entry = Entry(centerFrame, textvariable=bName)
-ComPer_Entry.grid(row=8,column=2)
-# accnumBer_Entry = Entry(centerFrame, textvariable=accnumBer)
-# accnumBer_Entry.grid(row=9,column=2)
+    # TO DISPLAY WIDGETS IN CENTER CENTERFRAME.
 
-# TO SUBMIT THE FORM WE NEED A BUTTON DONT WE.
-submit = Button(centerFrame, text="Register", command=register).grid(row=10, column=2)
+    # LABELS IN CENTERFRAME.
 
-window.mainloop()
+
+    # ---------------------WE ARE NOT GOING TO PUT THIS AS WE WILL OURSELF CREATE THE LOAN ID AND DISPLAY IT TO THE USER.---------------------
+    # loanId_label = Label(centerFrame, text="Loan Id",font="ariel 10 ", bg= "white", justify= LEFT).grid(row=1, column=1, padx=100, pady =5)
+
+    Id_label = Label(centerFrame, text="ID Number",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=2, column=1, padx=100, pady =5)
+
+    amtTaken_label = Label(centerFrame, text="Amount Taken",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=3, column=1, padx=100, pady =5)
+
+    IntPer_label = Label(centerFrame, text="Interest Percentage",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=4, column=1, padx=100, pady =5)
+
+    TimePeriod_label = Label(centerFrame, text="Time Period",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=5, column=1, padx=100, pady =5)
+
+    PayDate_label = Label(centerFrame, text="Pay Date",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=6, column=1, padx=100, pady =5)
+
+    ComTo_label = Label(centerFrame, text="Commision To",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=7, column=1, padx=100, pady =5)
+
+    ComPer_label = Label(centerFrame, text="Commision Percentage",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=8, column=1, padx=100, pady =5)
+
+    # AccountNumber_label = Label(centerFrame, text="Account Number",font="ariel 10 ",bg= "white", justify= LEFT).grid(row=9, column=1, padx=100, pady =5)
+
+
+
+
+
+
+
+    # TEXT ENTRY WIDGETS IN CENTERFRAME.
+    # loanId_Entry = Entry(centerFrame, textvariable=lID).grid(row=1,column=2)
+    ID_Entry = Entry(centerFrame, textvariable=Name)
+    ID_Entry.grid(row=2,column=2)
+    amtTaken_Entry = Entry(centerFrame, textvariable=email)
+    amtTaken_Entry.grid(row=3,column=2)
+    IntPer_Entry = Entry(centerFrame, textvariable=numBer)
+    IntPer_Entry.grid(row=4,column=2)
+    # aDD_Entry = Entry(centerFrame, textvariable=aDD).grid(row=5,column=2)
+    TimePeriod_Entry = Entry(centerFrame,textvariable= timePeriod)
+    TimePeriod_Entry.grid(row=5,column=2)
+    PayDate_Entry = DateEntry(centerFrame, textvariable=aaDnumBer)
+    PayDate_Entry.grid(row=6,column=2)
+    ComTo_Entry = Entry(centerFrame, textvariable=pannumBer)
+    ComTo_Entry.grid(row=7,column=2)
+    ComPer_Entry = Entry(centerFrame, textvariable=bName)
+    ComPer_Entry.grid(row=8,column=2)
+    # accnumBer_Entry = Entry(centerFrame, textvariable=accnumBer)
+    # accnumBer_Entry.grid(row=9,column=2)
+
+    # TO SUBMIT THE FORM WE NEED A BUTTON DONT WE.
+    submit = Button(centerFrame, text="Register", command=register).grid(row=10, column=2)
+
+    window.mainloop()
+
